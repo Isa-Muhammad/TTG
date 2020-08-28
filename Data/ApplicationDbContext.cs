@@ -12,5 +12,7 @@ namespace TTG.Data
             : base(options)
         {
         }
+
+        public DbSet<Models.TrainTrip> TrainTrip { get; set; }
     }
 }

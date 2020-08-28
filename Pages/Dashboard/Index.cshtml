@@ -1,62 +1,57 @@
 ﻿@page
+@model TTG.Pages.Dashboard.IndexModel
 @{
     ViewData["Title"] = "Generate Timetable";
 }
 
-<form method="post">
-    Trains:
-    <input type="text" value="" />
-    <input type="submit" value="add" />
-    Time:
-    <input type="text" value="" />
-    <input type="submit" value="add" />
-</form>
-
-<form method="post">
-    Stations:
-    <input type="text" value="" />
-    <input type="submit" value="add" />
-</form>
+<a asp-page="Create">Create New</a>
+<a asp-page="GenerateTimetable" class="pl-3">Generate Timetable</a>
 
 <table class="table">
-    <tr>
-        <th>Description</th>
-        <th>Train Code</th>
-        <th>Depature</th>
-        <th>Arrival</th>
-        <th>Depature</th>
-        <th>Arrival</th>
-    </tr>
-    <tr>
-        <th>1st trip</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr>
-        <th>2nd trip</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr>
-        <th>3rd trip</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-    <tr>
-        <th>4th trip</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainTrips[0].TrainCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainTrips[0].DepartureStation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainTrips[0].ArrivalStation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainTrips[0].DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainTrips[0].ArrivalTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TrainTrips)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureStation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalStation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
 </table>
+

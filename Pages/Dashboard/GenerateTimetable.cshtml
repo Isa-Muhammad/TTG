@@ -1,0 +1,33 @@
+﻿@page
+@model TTG.Pages.Dashboard.GenerateTimetableModel
+@{
+    <table id="tblResult" class="table table-striped">
+        <thead>
+            <tr>
+                @foreach (var headerValue in Model.Timetable.Columns)
+                {
+                    <th class="tHeaderCell" col_name="@headerValue">@headerValue</th>
+
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Timetable.Rows.Count; i++)
+            {
+                <tr>
+                    @foreach (var cellValue in Model.Timetable.Rows[i].ItemArray)
+                    {
+                        <td>@cellValue</td>
+
+                    }
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <a asp-page="Index">Back to List</a>
+    </div>
+
+}
